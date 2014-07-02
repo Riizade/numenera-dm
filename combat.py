@@ -42,14 +42,29 @@ def pad(s, n):
 def print_help():
     print("You're on your own.")
 
-# input loop
-while True:
-    cmd = raw_input("Enter a command:\n")
-
-    inputs = cmd.split(" ")
-    if cmd[0] == "exit":
-        exit(0)
-    elif cmd[0] == "help":
-        print_help()
+def open_actor(filename):
+    extension = filename.split('.')[-1].lower()
+    if extension == 'npc':
+        # open as NPC
+    elif extension == 'pc':
+        # open as PC
     else:
-        print("Unknown command "+cmd[0])
+        print("Unknown filetype ."+extension)
+
+def main():
+    # instantiate environment
+
+    # input loop
+    while True:
+        cmd = raw_input("Enter a command:\n")
+
+        inputs = cmd.split(" ")
+        if cmd[0] == "exit":
+            exit(0)
+        elif cmd[0] == "help":
+            print_help()
+        else:
+            print("Unknown command "+cmd[0])
+
+if __name__ == "__main__":
+    main()
