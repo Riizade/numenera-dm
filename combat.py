@@ -7,27 +7,33 @@ class Actor:
     status = "None"
     notes = ""
 
+    # returns a formatted combat line of an actor
     def boardline(self):
-        return name[0:16]+"\t"+str(health)+"/"+str(max_health)+"\t"+status+"\t"+notes 
+        strings = []
+        strings.append(pad(self.name, 16))
+        strings.append(pad(self.health+"/"+self.max_health, 7))
+        strings.append(pad(self.status, 12))
+        strings.append(pad(self.notes, 20))
+        return "\t".join(strings)
 
-class NPC(Actor):
+class Combatant(Actor):
     damage = ""
     armor = ""
     movement = ""
     modifications = []
     motive = ""
+    loot = ""
+
+class NPC(Combatant):
+    history = ""
+    occupation = ""
+    faction = ""
+    disposition = ""
+    tone = ""
+
 
 class Board:
     Combatants = []
-
-# returns a formatted combat line of an actor
-def boardline(actor):
-    strings = []
-    strings.append(pad(actor.name, 16))
-    strings.append(pad(actor.health+"/"+actor.max_health, 7))
-    strings.append(pad(actor.status, 12))
-    strings.append(pad(actor.notes, 20))
-    return "\t".join(strings)
 
 # returns a new s that is n characters long, truncated or padded as needed
 def pad(s, n):
@@ -50,6 +56,8 @@ def open_actor(filename):
     elif extension == 'pc':
         # open as PC
         pass
+    elif extension == 'enc':
+        # open as Board
     else:
         print("Unknown filetype ."+extension)
 
