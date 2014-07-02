@@ -27,6 +27,7 @@ class Combatant(Actor):
 class NPC(Combatant):
     history = ""
     occupation = ""
+    location = ""
     faction = ""
     disposition = ""
     tone = ""
