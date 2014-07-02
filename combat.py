@@ -46,8 +46,10 @@ def open_actor(filename):
     extension = filename.split('.')[-1].lower()
     if extension == 'npc':
         # open as NPC
+        pass
     elif extension == 'pc':
         # open as PC
+        pass
     else:
         print("Unknown filetype ."+extension)
 
@@ -59,12 +61,12 @@ def main():
         cmd = raw_input("Enter a command:\n")
 
         inputs = cmd.split(" ")
-        if cmd[0] == "exit":
+        if inputs[0] == "exit":
             exit(0)
-        elif cmd[0] == "help":
+        elif inputs[0] == "help":
             print_help()
         else:
-            print("Unknown command "+cmd[0])
+            print("Unknown command "+inputs[0])
 
 if __name__ == "__main__":
     main()
