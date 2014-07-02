@@ -1,5 +1,6 @@
 import json
 
+
 class Actor:
     name = "Unknown"
     health = 0
@@ -9,12 +10,12 @@ class Actor:
 
     # returns a formatted combat line of an actor
     def boardline(self):
-        strings = []
-        strings.append(pad(self.name, 16))
-        strings.append(pad(self.health+"/"+self.max_health, 7))
-        strings.append(pad(self.status, 12))
-        strings.append(pad(self.notes, 20))
+        strings = [pad(self.name, 16),
+                   pad(str(self.health) + "/" + str(self.max_health), 7),
+                   pad(self.status, 12),
+                   pad(self.notes, 20)]
         return "\t".join(strings)
+
 
 class Combatant(Actor):
     damage = ""
@@ -23,6 +24,7 @@ class Combatant(Actor):
     modifications = []
     motive = ""
     loot = ""
+
 
 class NPC(Combatant):
     history = ""
@@ -36,18 +38,21 @@ class NPC(Combatant):
 class Board:
     Combatants = []
 
+
 # returns a new s that is n characters long, truncated or padded as needed
 def pad(s, n):
     l = len(s)
-    if (l > n):
-        return s[:n-1]
-    if (l == n):
+    if l > n:
+        return s[:n - 1]
+    if l == n:
         return s
-    if (l < n):
-        return s+" "*(n-l)
+    if l < n:
+        return s + " " * (n - l)
+
 
 def print_help():
     print("You're on your own.")
+
 
 def open_actor(filename):
     extension = filename.split('.')[-1].lower()
@@ -59,8 +64,10 @@ def open_actor(filename):
         pass
     elif extension == 'enc':
         # open as Board
+        pass
     else:
-        print("Unknown filetype ."+extension)
+        print("Unknown filetype ." + extension)
+
 
 def main():
     # instantiate environment
@@ -75,7 +82,8 @@ def main():
         elif inputs[0] == "help":
             print_help()
         else:
-            print("Unknown command "+inputs[0])
+            print("Unknown command " + inputs[0])
+
 
 if __name__ == "__main__":
     main()
